@@ -16,3 +16,5 @@ being used by another application.
 - Run `npm run server` to spin up the quotes API on `http://localhost:3333/api/quotes`.
 - Run `npm start` to compile the React project and spin up the app on `http://localhost:1234`.
 - Run `npm test` to run tests using Cypress.
+
+### ts was kinda used in this repo
