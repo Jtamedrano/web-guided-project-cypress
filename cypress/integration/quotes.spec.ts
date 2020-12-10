@@ -6,6 +6,7 @@ enum SiteInfo {
   testAuth = 'Michael Scott',
   testText = "You miss 100% of the shots you don't take - Wayne Gretzky",
   submitBtn = '#submitBtn',
+  deleteBtn = 'ul > :nth-child(4) > button:nth-child(3)',
 }
 
 describe('These are sample test', (): void => {
@@ -54,5 +55,21 @@ describe('Filling out and cancelling inputs', (): void => {
       .should('have.value', SiteInfo.testAuth);
 
     cy.get(SiteInfo.submitBtn).should('not.be.disabled');
+  });
+});
+
+describe('Adding a new quote and deleting quote', () => {
+  beforeEach(() => {
+    cy.visit(SiteInfo.Root);
+  });
+  it('Can submit and delete a new quote', () => {
+    cy.get(SiteInfo.inputText).type(SiteInfo.testText);
+    cy.get(SiteInfo.inputAuthor).type(SiteInfo.testAuth);
+    cy.get(SiteInfo.submitBtn).click();
+
+    cy.contains(SiteInfo.testText);
+
+    cy.get(SiteInfo.deleteBtn).click();
+    cy.get('ul > :nth-child(4)').should('not.exist');
   });
 });
